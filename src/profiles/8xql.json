@@ -1,0 +1,108 @@
+{
+  "chains": {
+    "R": {
+      "label": "E",
+      "first": 2,
+      "last": 317
+    },
+    "A": {
+      "label": "A",
+      "first": 1,
+      "last": 249
+    },
+    "B": {
+      "label": "B",
+      "first": 1,
+      "last": 340
+    },
+    "C": {
+      "label": "C",
+      "first": 1,
+      "last": 71
+    }
+  },
+  "ligands": {
+    "F": {
+      "name": "GOQ",
+      "heavy_atoms": 25
+    },
+    "G": {
+      "name": "GOQ",
+      "heavy_atoms": 25
+    }
+  },
+  "source_sha256": "22f4bc9ca91c8c371f5e1f92462592de3644b79cdd92f0a045e9491a34014b1d",
+  "expected_protein_heavy_atoms": 7727,
+  "chemistry": {
+    "context_residues": [
+      "GOQ"
+    ],
+    "expected_context_atoms": 50,
+    "expected_cholesterol_count": 0,
+    "cholesterol_chain": "L",
+    "cholesterol_residue_id": "503"
+  },
+  "tails": [
+    {
+      "chain": "R",
+      "first": 300,
+      "last": 317,
+      "critical_start": 303,
+      "entry_phi_count": 3,
+      "second_hinges": [
+        [
+          0,
+          "psi"
+        ],
+        [
+          1,
+          "phi"
+        ],
+        [
+          1,
+          "psi"
+        ],
+        [
+          2,
+          "phi"
+        ],
+        [
+          2,
+          "psi"
+        ]
+      ],
+      "third_hinges": [
+        [
+          1,
+          "phi"
+        ],
+        [
+          1,
+          "psi"
+        ],
+        [
+          2,
+          "phi"
+        ],
+        [
+          2,
+          "psi"
+        ]
+      ]
+    },
+    {
+      "chain": "C",
+      "first": 63,
+      "last": 71,
+      "critical_start": 64,
+      "entry_phi_count": 1,
+      "second_hinges": [
+        [
+          0,
+          "psi"
+        ]
+      ],
+      "third_hinges": []
+    }
+  ]
+}

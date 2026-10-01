@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "receptors": [
+    {
+      "id": "primary_nochol",
+      "pdbqt": "../../data/docking/receptors/primary_nochol.pdbqt",
+      "pdb": "../../data/docking/receptors/primary_nochol.pdb",
+      "atom_identity": "../../data/docking/chemistry/atom_identity.json",
+      "topology_bonds": "../../data/docking/chemistry/topology_bonds.json",
+      "protein_chains": [
+        "R",
+        "A",
+        "B",
+        "C"
+      ],
+      "contact_chains": [
+        "R"
+      ],
+      "expected_residues": 976
+    },
+    {
+      "id": "alternate_1_nochol",
+      "pdbqt": "../../data/docking/receptors/alternate_1_nochol.pdbqt",
+      "pdb": "../../data/docking/receptors/alternate_1_nochol.pdb",
+      "atom_identity": "../../data/docking/chemistry/atom_identity.json",
+      "topology_bonds": "../../data/docking/chemistry/topology_bonds.json",
+      "protein_chains": [
+        "R",
+        "A",
+        "B",
+        "C"
+      ],
+      "contact_chains": [
+        "R"
+      ],
+      "expected_residues": 976
+    },
+    {
+      "id": "alternate_2_nochol",
+      "pdbqt": "../../data/docking/receptors/alternate_2_nochol.pdbqt",
+      "pdb": "../../data/docking/receptors/alternate_2_nochol.pdb",
+      "atom_identity": "../../data/docking/chemistry/atom_identity.json",
+      "topology_bonds": "../../data/docking/chemistry/topology_bonds.json",
+      "protein_chains": [
+        "R",
+        "A",
+        "B",
+        "C"
+      ],
+      "contact_chains": [
+        "R"
+      ],
+      "expected_residues": 976
+    }
+  ],
+  "ligands": [
+    {
+      "id": "CLB",
+      "sdf": "../../data/docking/ligands/CLB.sdf",
+      "records": "all"
+    },
+    {
+      "id": "CLE_S-R",
+      "sdf": "../../data/docking/ligands/CLE_S-R.sdf",
+      "records": "all"
+    },
+    {
+      "id": "CLE_S-S",
+      "sdf": "../../data/docking/ligands/CLE_S-S.sdf",
+      "records": "all"
+    },
+    {
+      "id": "CLI_S-R",
+      "sdf": "../../data/docking/ligands/CLI_S-R.sdf",
+      "records": "all"
+    },
+    {
+      "id": "CLI_S-S",
+      "sdf": "../../data/docking/ligands/CLI_S-S.sdf",
+      "records": "all"
+    }
+  ],
+  "searches": [
+    {
+      "id": "EC-vestibule",
+      "receptors": [
+        "primary_nochol",
+        "alternate_1_nochol",
+        "alternate_2_nochol"
+      ],
+      "center": [
+        -6.364,
+        -2.138,
+        21.574
+      ],
+      "size": [
+        26.478,
+        29.539,
+        29.681
+      ]
+    },
+    {
+      "id": "P1-replacement",
+      "receptors": [
+        "primary_nochol",
+        "alternate_1_nochol",
+        "alternate_2_nochol"
+      ],
+      "center": [
+        -6.772,
+        -6.032,
+        14.378
+      ],
+      "size": [
+        30.28,
+        37.328,
+        44.072
+      ]
+    }
+  ],
+  "docking": {
+    "seeds": [
+      20260910
+    ],
+    "cpu": 1,
+    "exhaustiveness": 8,
+    "max_evals": 100000,
+    "n_poses": 10
+  },
+  "geometry": {
+    "external_vdw_ratio": 0.75,
+    "internal_vdw_ratio": 0.75,
+    "minimum_external_distance": 1.8,
+    "contact_distance": 4.0,
+    "minimum_contact_atoms": 8,
+    "minimum_contact_residues": 3
+  },
+  "selection": {
+    "backbone_rmsd": 3.0,
+    "contact_jaccard": 0.5,
+    "max_representatives_per_group": 3,
+    "ligand_chain": "P"
+  }
+}

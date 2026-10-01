@@ -1,0 +1,1 @@
+{"systype":"bilayer","dimensions":["140.108925","140.108925","167.167","90.0","90.0","90.0"],"input":["openmm"],"forcefield":{"type":"c36m","files":["default"],"custom":["cir\/cir.rtf","cir\/cir.prm"]},"hmr":false}

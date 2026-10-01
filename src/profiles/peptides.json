@@ -1,0 +1,49 @@
+{
+  "parents": {
+    "CLB": {
+      "residues": 9,
+      "prolines": 2,
+      "sulfoxides": 0,
+      "charge": 0
+    },
+    "CLE": {
+      "residues": 8,
+      "prolines": 1,
+      "sulfoxides": 1,
+      "charge": 0
+    },
+    "CLI": {
+      "residues": 8,
+      "prolines": 1,
+      "sulfoxides": 1,
+      "charge": 0
+    }
+  },
+  "states": {
+    "CLB": {
+      "parent": "CLB",
+      "sulfur_cip": "none",
+      "seed_offset": 0
+    },
+    "CLE_S-R": {
+      "parent": "CLE",
+      "sulfur_cip": "R",
+      "seed_offset": 100000
+    },
+    "CLE_S-S": {
+      "parent": "CLE",
+      "sulfur_cip": "S",
+      "seed_offset": 200000
+    },
+    "CLI_S-R": {
+      "parent": "CLI",
+      "sulfur_cip": "R",
+      "seed_offset": 300000
+    },
+    "CLI_S-S": {
+      "parent": "CLI",
+      "sulfur_cip": "S",
+      "seed_offset": 400000
+    }
+  }
+}

@@ -1,0 +1,335 @@
+{
+  "schema_version": "1.0",
+  "method": "Kabsch fit of original receptor TM Calpha atoms to the independently downloaded PDBTM oriented 8XQL structure",
+  "coordinate_convention": "Column vector: x_oriented = rotation @ x_original + translation; Angstrom; membrane center z=0; intracellular/G-protein side z<0",
+  "source_template_sha256": "b0f547ea21112c9422816577b685a314349cce795f560f085ef2c3dea7db76af",
+  "reference_pdb_sha256": "fe88c57f2fe46fa533f5af4eeb62a79a68d505b4c55090962098576b57a371ef",
+  "reference_xml_sha256": "d15ecabf4a7ff24b9f3beaec0b57352710c4dd0827b289d889818b1336db37cc",
+  "pdbtm_xml_rotation": [
+    [
+      0.95575738,
+      0.00872856,
+      0.2940267
+    ],
+    [
+      0.0,
+      0.99955964,
+      -0.02967322
+    ],
+    [
+      -0.29415622,
+      0.0283604,
+      0.95533651
+    ]
+  ],
+  "pdbtm_xml_translation": [
+    -170.06869507,
+    -126.51383209,
+    -74.70851135
+  ],
+  "pdbtm_xml_anchor_rmsd_angstrom": 0.0004844049642363108,
+  "pdbtm_fitted_rotation": [
+    [
+      0.9557570703188374,
+      0.008727381412522344,
+      0.294027643852127
+    ],
+    [
+      1.5663937239334616e-06,
+      0.9995596239538127,
+      -0.02967420022270547
+    ],
+    [
+      -0.2941571391843131,
+      0.028361787231963347,
+      0.9553361641285797
+    ]
+  ],
+  "pdbtm_fitted_translation": [
+    -170.06859601282702,
+    -126.5139447119939,
+    -74.70855790424679
+  ],
+  "anchor_rmsd_angstrom": 0.0004830401594004692,
+  "anchor_count": 171,
+  "anchor_auth_chain": "R",
+  "anchor_atom_name": "CA",
+  "anchor_auth_residue_numbers": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284
+  ],
+  "tm_auth_ranges": [
+    [
+      6,
+      33
+    ],
+    [
+      46,
+      68
+    ],
+    [
+      82,
+      106
+    ],
+    [
+      129,
+      151
+    ],
+    [
+      177,
+      200
+    ],
+    [
+      229,
+      253
+    ],
+    [
+      262,
+      284
+    ]
+  ],
+  "database_to_project_rotation": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      -1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      -1.0
+    ]
+  ],
+  "database_gprotein_ca_z_centroid_angstrom": 49.397431822025275,
+  "rotation": [
+    [
+      0.9557570703188374,
+      0.008727381412522344,
+      0.294027643852127
+    ],
+    [
+      -1.5663937239334616e-06,
+      -0.9995596239538127,
+      0.02967420022270547
+    ],
+    [
+      0.2941571391843131,
+      -0.028361787231963347,
+      -0.9553361641285797
+    ]
+  ],
+  "translation": [
+    -170.06859601282702,
+    126.5139447119939,
+    74.70855790424679
+  ],
+  "inverse_rotation": [
+    [
+      0.9557570703188374,
+      -1.5663937239334616e-06,
+      0.2941571391843131
+    ],
+    [
+      0.008727381412522344,
+      -0.9995596239538127,
+      -0.028361787231963347
+    ],
+    [
+      0.294027643852127,
+      0.02967420022270547,
+      -0.9553361641285797
+    ]
+  ],
+  "inverse_translation": [
+    140.5684055834076,
+    130.06135272861727,
+    117.62245558836378
+  ],
+  "rotation_determinant": 0.9999999999999987,
+  "rotation_orthogonality_max_error": 1.6653345369377348e-15,
+  "pdbtm_membrane_half_width_angstrom": 18.0,
+  "pdbtm_membrane_bounds_z_angstrom": [
+    -18.0,
+    18.0
+  ],
+  "interpretation": [
+    "This uses a database-computed membrane placement, not an experimentally determined bilayer or a fitted lipid composition.",
+    "A 180-degree proper rotation about X is applied only when needed to place Gprotein on the negative-Z intracellular side; all molecules move together.",
+    "PDBTM labels the two membrane sides numerically; the intracellular assignment here is inferred from Gprotein attachment to the receptor.",
+    "The fitted transform is orthonormal; minor differences from XML coefficients reflect reference PDB rounding."
+  ]
+}

@@ -1,0 +1,1 @@
+{"systype":"bilayer","dimensions":["140.096992","140.096992","167.167","90.0","90.0","90.0"],"input":["openmm"],"forcefield":{"type":"c36m","files":["default"],"custom":["cis\/cis.rtf","cis\/cis.prm"]},"hmr":false}

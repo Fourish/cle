@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "peptides": {
+    "input_dir": "../../data/inputs/peptides",
+    "profile": "peptides.json",
+    "attempts_per_state": 500,
+    "keep": 40,
+    "seed_batches": 5,
+    "seed": 20260910,
+    "threads": 2
+  },
+  "receptor": {
+    "input": "../../data/inputs/receptor/8XQL.cif",
+    "profile": "8xql.json",
+    "forcefield": "../../data/inputs/forcefield/charmm36_2024.xml",
+    "transform": "../../data/inputs/receptor/orientation.json",
+    "repair_seeds": [-20260910, -20260911, -20260912],
+    "models": 1,
+    "loops": 4,
+    "keep": 3,
+    "ph": 7.4,
+    "seed": 20260910,
+    "cpu_threads": 2
+  },
+  "docking_profile": "docking_8xql.json"
+}
