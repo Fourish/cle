@@ -15,6 +15,8 @@
 
 完整流程见 [流程概述](src/README.md)，复合物筛选方法见 [几何筛选说明](src/0003-binding-site-selection/WORKFLOW.md)。
 
+[HighFold3](src/highfold3/README.md) 提供当前使用的环肽及受体复合物预测源码和环境说明；[结果数据包](data/highfold3/results.zip) 包含 75 个单体、450 个固定编号复合物及 10 个 CLE 编号调整样本，以及完整置信度、筛选结果和交互报告。
+
 ## 一键生成复合物
 
 安装 `cle` Conda 环境后执行：

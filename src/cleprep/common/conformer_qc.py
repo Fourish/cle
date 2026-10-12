@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from itertools import combinations
 import math
 
@@ -11,6 +12,25 @@ from rdkit.Chem import rdMolTransforms
 
 from .geometry import segment_distance
 from .peptides import Omega, stereo_labels
+
+
+@dataclass(frozen=True)
+class QCThresholds:
+    """Geometry tolerances; chirality and severe clashes remain mandatory."""
+
+    bond_ratio_min: float = 0.75
+    bond_ratio_max: float = 1.25
+    amide_deviation_degrees: float = 35.0
+    peptide_cn_min_angstrom: float = 1.20
+    peptide_cn_max_angstrom: float = 1.60
+
+
+STRICT_QC = QCThresholds()
+RELAXED_QC = QCThresholds(
+    bond_ratio_min=0.70, bond_ratio_max=1.30, amide_deviation_degrees=45.0,
+    peptide_cn_min_angstrom=1.15, peptide_cn_max_angstrom=1.75,
+)
+QC_PROFILES = {"strict": STRICT_QC, "relaxed": RELAXED_QC}
 
 
 def expected_bond_length(bond: Chem.Bond) -> float:
@@ -23,8 +43,9 @@ def expected_bond_length(bond: Chem.Bond) -> float:
 
 
 def audit_conformer(mol: Chem.Mol, conf_id: int, expected_cip: dict[int, str],
-                    backbone_indices: list[int], peptide_omegas: list[Omega]) -> list[str]:
-    """Return rejection reasons; thresholds are the original geometric screens."""
+                    backbone_indices: list[int], peptide_omegas: list[Omega],
+                    *, thresholds: QCThresholds = STRICT_QC) -> list[str]:
+    """Return rejection reasons, preserving original strict defaults."""
     indices = set(expected_cip) | set(backbone_indices) | {i for omega in peptide_omegas for i in omega}
     if any(i < 0 or i >= mol.GetNumAtoms() for i in indices):
         raise ValueError("QC atom indices must be within the molecule")
@@ -51,7 +72,7 @@ def audit_conformer(mol: Chem.Mol, conf_id: int, expected_cip: dict[int, str],
     for bond in mol.GetBonds():
         a, b = bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()
         ratio = float(np.linalg.norm(xyz[a] - xyz[b])) / expected_bond_length(bond)
-        if not 0.75 <= ratio <= 1.25:
+        if not thresholds.bond_ratio_min <= ratio <= thresholds.bond_ratio_max:
             issues.append(f"abnormal_bond:{a}-{b} ratio={ratio:.3f}")
 
     topological = Chem.GetDistanceMatrix(mol)
@@ -65,7 +86,8 @@ def audit_conformer(mol: Chem.Mol, conf_id: int, expected_cip: dict[int, str],
 
     for omega in peptide_omegas:
         degrees = float(rdMolTransforms.GetDihedralDeg(conformer, *omega))
-        if not math.isfinite(degrees) or min(abs(degrees), abs(180 - abs(degrees))) > 35.0:
+        if (not math.isfinite(degrees)
+                or min(abs(degrees), abs(180 - abs(degrees))) > thresholds.amide_deviation_degrees):
             issues.append(f"twisted_amide:{omega}")
 
     backbone = set(backbone_indices)
