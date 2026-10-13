@@ -15,7 +15,7 @@
 | `build_*inputs.py` | 单体、五态复合物及扩展结构库的输入准备 |
 | `audit_*outputs.py`、`plot_library_results.py` | 预测结果的几何筛选与统计绘图 |
 | [`conda-explicit.txt`](conda-explicit.txt)、[`requirements.txt`](requirements.txt) | Linux x86_64 环境的 Conda 与 Python 依赖 |
-| [`../../data/highfold3/results.zip`](../../data/highfold3/results.zip) | 现有结果数据与交互报告 |
+| [`../../data/highfold3/results.zip`](../../data/highfold3/results.zip) | 原始预测结果与相关输入数据 |
 
 ## 结果数据
 
@@ -28,19 +28,18 @@
 | `complexes_25states/` | 其余 25 态复合物 | 375 |
 | `cle_renumbered/` | CLE 两态调整环编号后的补充预测 | 10 |
 
-各批次保留全部原始 CIF、完整置信度 JSON（含 PAE）、排名、几何筛选结果、SDF 和原子映射。
+各批次的 `predictions/` 保留全部原始 CIF、完整置信度 JSON（含 PAE）以及模型直接输出的排名和最佳排名结构。
+输入化学态 SDF 与原子映射分别保存在 `states/` 和 `manifest.json`。
 共用蛋白实体、MSA/template 与源化学结构集中在包内 `inputs/`，没有重复存放每个状态的完整蛋白输入。
-`comparison/` 保存严格与放宽筛选的逐样本对照。
 
-结果包使用 Git LFS 保存。安装 Git LFS 后，在仓库根目录拉取并解压，随后打开 `data/highfold3/results/index.html`：
+结果包使用 Git LFS 保存。安装 Git LFS 后，在仓库根目录拉取并解压：
 
 ```bash
 git lfs pull --include="data/highfold3/results.zip"
 unzip data/highfold3/results.zip -d data/highfold3
 ```
 
-单体严格通过 **32/75**；450 个固定编号复合物严格通过 **47** 个，放宽后入选 **73** 个。
-CLE 编号调整的 10 个补充样本两套筛选均未通过。结果保留原始坐标；几何筛选与模型置信度不能代替实验验证，也不代表结合亲和力。
+原始预测位于 `data/highfold3/results/<批次>/predictions/`，按化学态及 seed/sample 分目录保存，坐标保持模型原始输出。
 
 ## 运行环境
 

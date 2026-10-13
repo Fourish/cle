@@ -17,4 +17,4 @@
 
 筛选细节见 [复合物生成流程](0003-binding-site-selection/WORKFLOW.md)，统一操作方式见 [流程操作界面](production/TUI.md)。
 
-[HighFold3](highfold3/README.md) 提供环肽及 TAS2R14–G 蛋白复合物的预测源码、结果分析脚本和环境说明。[结果数据包](../data/highfold3/results.zip) 包含 535 个原始预测样本、完整置信度、筛选结果及交互报告。
+[HighFold3](highfold3/README.md) 提供环肽及 TAS2R14–G 蛋白复合物的预测源码、结果分析脚本和环境说明。[结果数据包](../data/highfold3/results.zip) 包含 535 个原始预测样本、完整置信度、模型排名及相关输入数据。
