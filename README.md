@@ -50,6 +50,28 @@ unzip data/highfold3/results.zip -d data/highfold3
 
 解压后的原始预测位于 `data/highfold3/results/<批次>/predictions/`，按化学态及 seed/sample 分目录保存。
 
+### Notebook 演示
+
+打开根目录的 [cyclic_peptide_design.ipynb](cyclic_peptide_design.ipynb)，按“输入准备、HighFold3 调用、预测结果、原生置信度、改造与修饰案例”的顺序展示。Notebook 可组装五种基础化学态的单体或复合物输入，复用结果包中的 MSA / 模板，设置预测参数并直接调用仓库内的推理入口。默认 CLB `seed-1 / sample-0` 与报告展示页使用同一母体，三维视图突出 Phe6 和 Leu2；菜单可浏览四个批次的全部 535 个归档样本。
+
+默认 `RUN_PREDICTION=False` 展示输入、调用代码和已保存结果，按需读取 ZIP，无须解压、GPU 或模型权重。配置好 HighFold3 推理环境与权重目录后，将该开关设为 `True`，即可在 Notebook 中运行预测、查看实时日志并读取本次结构与评分。
+
+数值统计、样本分数和残基对照采用文本与简洁表格；空间结构、位点对照和 PAE 保留图形展示。
+
+改造案例沿用“制作环肽预测结果展示页”中的残基对照和四张位点图，素材位于 [data/highfold3/demo/](data/highfold3/demo/)。72、82、88 分保留模拟评分标识，位点图用于说明 Phe6→Tyr 和 Leu2 主链 N-甲基化，不作为改造体的新预测结果。
+
+在仓库根目录创建独立的 CPU 演示环境并启动：
+
+```bash
+conda create -n highfold3-demo python=3.12 -y
+conda activate highfold3-demo
+python -m pip install -r src/highfold3/requirements-demo.txt
+git lfs pull --include="data/highfold3/results.zip"
+jupyter lab cyclic_peptide_design.ipynb
+```
+
+在 JupyterLab 中选择该环境的 Python 内核，执行 **Restart Kernel and Run All Cells**。输入准备、参数与推理调用代码展开，其余辅助代码折叠。默认模式只读取已有数据；实际推理通过独立的 `highfold3` 环境执行，配置方式见 [Notebook 演示说明](src/highfold3/README.md#notebook-演示)。三维交互视图需要联网加载 3Dmol.js，并使用浏览器 WebGL；静态图可离线查看。
+
 ## 运行环境
 
 | 环境 | 用途 | 已记录的主要配置 |

@@ -19,4 +19,6 @@
 
 [HighFold3](highfold3/README.md) 提供环肽及 TAS2R14–G 蛋白复合物的推理源码、输入准备脚本和环境说明。[结果数据包](../data/highfold3/results.zip) 包含 535 个原始预测样本、完整置信度、模型排名及相关输入数据。
 
+根目录的 [cyclic_peptide_design.ipynb](../cyclic_peptide_design.ipynb) 包含输入组装、HighFold3 推理调用、结果读取与置信度展示，并衔接 CLB 的 Phe6→Tyr 和 Leu2 主链 N-甲基化案例。默认在 CPU 环境中预览调用并浏览归档样本，配置独立的 HighFold3 环境后可直接执行预测。案例中的模拟评分与示意结构保留相应标识。启动方式见 [Notebook 演示说明](highfold3/README.md#notebook-演示)。
+
 在已配置的 `highfold3` 环境中，使用 `bash src/highfold3/run.sh CLB inference` 运行单体预测；入口同膜体系脚本，按任务名和阶段调用，输入位于 `data/highfold3/inputs/`，输出位于 `result/highfold3/`。阶段与环境配置见 [HighFold3 使用说明](highfold3/README.md#使用)。

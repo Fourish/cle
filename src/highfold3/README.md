@@ -10,6 +10,9 @@
 
 | 路径 | 内容 |
 |---|---|
+| [`../../cyclic_peptide_design.ipynb`](../../cyclic_peptide_design.ipynb) | 根目录演示入口：输入准备、HighFold3 调用、预测结果及 CLB 改造案例 |
+| [`requirements-demo.txt`](requirements-demo.txt) | 独立 CPU 演示环境的依赖 |
+| [`../../data/highfold3/demo/`](../../data/highfold3/demo/) | 参考展示页的位点图、模拟评分与来源记录 |
 | [`run.sh`](run.sh) | 按任务名和阶段运行的一键入口 |
 | [`run_alphafold.py`](run_alphafold.py) | 模型预测入口 |
 | [`src/alphafold3/`](src/alphafold3/) | Python 与 C++ 推理源码 |
@@ -17,6 +20,41 @@
 | [`../../data/highfold3/inputs/`](../../data/highfold3/inputs/) | 五种基础化学态的单体预测输入 |
 | [`conda-explicit.txt`](conda-explicit.txt)、[`requirements.txt`](requirements.txt) | Linux x86_64 环境的 Conda 与 Python 依赖 |
 | [`../../data/highfold3/results.zip`](../../data/highfold3/results.zip) | 原始预测结果与相关输入数据 |
+
+## Notebook 演示
+
+根目录的 [`cyclic_peptide_design.ipynb`](../../cyclic_peptide_design.ipynb) 以 HighFold3 预测结果为主线，默认使用与“制作环肽预测结果展示页”相同的 CLB `seed-1 / sample-0`。演示依次包含：
+
+1. HighFold3 在定点改造流程中的作用。
+2. 组装环肽及蛋白链输入，设置 seed / GPU / 采样参数，调用 `run_alphafold.py` 并读取本次预测结果。
+3. 现有预测批次概览，以及已归档的 CLB 复合物结构、Phe6 / Leu2 位点和原生 pLDDT、PAE、pTM / ipTM。
+4. 同一 CLB 输入的 15 个样本及模型原生排名分数。
+5. Phe6→Tyr 和 Leu2 主链 N-甲基化，两组均按“残基对照、位点前后图”展示。
+6. 四个批次、535 个原始样本的交互浏览。
+
+数值统计、样本分数与残基对照使用文本和表格，pLDDT 展示均值及范围；空间结构、位点对照与 PAE 保留图形展示。
+
+案例沿用参考页的 72、82、88 模拟评分，以文字展示并保留模拟评分标识；四张位点图以母体坐标为参照构建，未对改造体重新预测或优化。素材及来源记录保存在 [`data/highfold3/demo/`](../../data/highfold3/demo/)，运行不依赖其他聊天的工作目录。原始结构和置信度仍直接来自结果 ZIP。
+
+原生指标定义见 [AlphaFold 3 输出说明](https://github.com/google-deepmind/alphafold3/blob/7f6edd04a4aeffa65d349d51b1ca81cfd34549af/docs/output.md)。置信度不代表结合活性，短肽的 pTM 会受链长影响。案例位点图的受体编号采用原始 R 链序列号加 1，标签指示线不表示氢键或距离；详细来源与数据性质见 [`cases.json`](../../data/highfold3/demo/cases.json)。
+
+在仓库根目录准备独立的 Python 3.12 演示环境：
+
+```bash
+conda create -n highfold3-demo python=3.12 -y
+conda activate highfold3-demo
+python -m pip install -r src/highfold3/requirements-demo.txt
+git lfs pull --include="data/highfold3/results.zip"
+jupyter lab cyclic_peptide_design.ipynb
+```
+
+选择该环境的 Python 内核，执行 **Restart Kernel and Run All Cells** 即可从头演示。默认 `RUN_PREDICTION=False`，展示实际输入、推理调用代码与归档结果。此模式只需要 JupyterLab、ipywidgets、py3Dmol、NumPy、Matplotlib 和 gemmi；不需要安装推理源码或准备 GPU、权重、搜索数据库。三维交互视图需要联网加载 3Dmol.js，以及浏览器 WebGL；离线时可使用保存的静态图。
+
+Notebook 保存完整的默认展示输出。输入准备、预测参数、推理执行及结果读取单元展开，辅助代码折叠。`PEPTIDE_STATE` 选择五种基础化学态，`INCLUDE_RECEPTOR` 选择单体或复合物；复合物使用结果包中的 `shared_protein_entities.json` 补齐 B、C、G、R 链及其 MSA / 模板，首尾环化保持启用。
+
+实际预测时，在已配置 HighFold3 的 GPU 主机上启动 Notebook，将 `RUN_PREDICTION` 设为 `True`。默认通过 `conda run --no-capture-output -n highfold3 python` 调用本仓库的 `run_alphafold.py`；也可将 `HIGHFOLD3_PYTHON` 设为本机已部署推理环境的 Python 路径。`HIGHFOLD3_MODEL_DIR` 指定权重目录，`HIGHFOLD3_DEVICE`、`HIGHFOLD3_BUCKETS` 和 `HIGHFOLD3_ATTENTION` 沿用一键脚本的设置。该环境需按下节安装本仓库源码并准备 CCD 缓存；Notebook 内核可继续使用独立的 CPU 演示环境。
+
+调用默认复用已准备的 MSA / 模板，使用 10 次 recycle、每 seed 5 个 diffusion 样本，并关闭数据搜索。输入快照、实时日志和原始结果写入 `result/highfold3/notebook/<任务>/<运行时间>/` 下的 `input.json`、`inference.log` 和 `predictions/`。重新执行参数单元会生成新的运行目录；预测成功后自动读取本次全部样本的原生分数，并展示首个 seed/sample 的结构、pLDDT、pTM / ipTM 和 PAE。后续归档案例仍使用原始 CLB 母体。
 
 ## 使用
 

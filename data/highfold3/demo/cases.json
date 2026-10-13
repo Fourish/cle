@@ -1,0 +1,124 @@
+{
+  "source": {
+    "title": "制作环肽预测结果展示页",
+    "thread": "thread://01a1312f-82e3-79c0-ba3f-de55f7f715a6?hostId=local",
+    "presentation": "全球生命科学竞赛_22页含AI介绍版.pptx",
+    "slides": [
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "date": "2026-10-13"
+  },
+  "baseline": {
+    "batch": "complexes_5states",
+    "state": "clb",
+    "seed": 1,
+    "sample": 0,
+    "sequence": "MLIPPFFVI",
+    "archive_model": "results/complexes_5states/predictions/clb/seed-1_sample-0/model.cif"
+  },
+  "score_type": "synthetic_illustrative_not_model_output",
+  "structure_type": "illustrative_edits_from_baseline_not_new_predictions",
+  "notes": [
+    "评分 72、82、88 为源演示文稿中的模拟数据。",
+    "位点图基于 CLB 母体坐标构建，未执行改造体的重新预测、优化或评分。",
+    "四张位点图共用相机，新增羟基和 N-甲基用于解释修改位置。",
+    "位点图的受体编号 = 原始 HighFold3 R 链序列号 + 1；环肽从 Met1 编号。",
+    "图中标签指示线不代表氢键或距离测量。"
+  ],
+  "cases": [
+    {
+      "key": "f6y",
+      "title": "Phe6 替换为 Tyr",
+      "before_name": "CLB",
+      "after_name": "CLB-F6Y",
+      "position": 6,
+      "before_residues": [
+        "Met",
+        "Leu",
+        "Ile",
+        "Pro",
+        "Pro",
+        "Phe",
+        "Phe",
+        "Val",
+        "Ile"
+      ],
+      "after_residues": [
+        "Met",
+        "Leu",
+        "Ile",
+        "Pro",
+        "Pro",
+        "Tyr",
+        "Phe",
+        "Val",
+        "Ile"
+      ],
+      "scores": [
+        72,
+        82
+      ],
+      "before_image": "f6y_before_site.png",
+      "after_image": "f6y_after_site.png",
+      "chemical_change": "Phe6: -CH2-C6H5  →  Tyr6: -CH2-C6H4-OH"
+    },
+    {
+      "key": "nme",
+      "title": "Leu2 主链 N-甲基化",
+      "before_name": "CLB-F6Y",
+      "after_name": "CLB-F6Y-NMeL2",
+      "position": 2,
+      "before_residues": [
+        "Met",
+        "Leu",
+        "Ile",
+        "Pro",
+        "Pro",
+        "Tyr",
+        "Phe",
+        "Val",
+        "Ile"
+      ],
+      "after_residues": [
+        "Met",
+        "NMe-Leu",
+        "Ile",
+        "Pro",
+        "Pro",
+        "Tyr",
+        "Phe",
+        "Val",
+        "Ile"
+      ],
+      "scores": [
+        82,
+        88
+      ],
+      "before_image": "nme_before_site.png",
+      "after_image": "nme_after_site.png",
+      "chemical_change": "Leu2 backbone: -CO-NH-  →  -CO-N(CH3)-"
+    }
+  ],
+  "images": {
+    "f6y_before_site.png": {
+      "sha256": "dcfa781bed427ec2b1026aaf06be4d80106688f118cf0544da89720daef7606d",
+      "source_image": "f6y_before_site.png"
+    },
+    "f6y_after_site.png": {
+      "sha256": "50cc3a6ad91fa6bef656545765ed4d03d3ed7ec0cc150ae5f06ae51901150b22",
+      "source_image": "f6y_after_site.png"
+    },
+    "nme_before_site.png": {
+      "sha256": "fe5eada4b7bf263330b05efc268db0bd24576220a04ed9b4ca526773e9030742",
+      "source_image": "nme_before_site.png"
+    },
+    "nme_after_site.png": {
+      "sha256": "146bd6a0a998f2ad699446ee85e17afcd8db6104c8bf63d0457a8d399f2d94e2",
+      "source_image": "nme_after_site.png"
+    }
+  }
+}
