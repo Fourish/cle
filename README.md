@@ -18,7 +18,7 @@
 
 ## HighFold3 源码与结果
 
-[src/highfold3/](src/highfold3/) 保存当前部署使用的推理源码、输入准备和结果分析脚本，包含环化编码、修饰残基映射及成键修正。源码来源、预测参数、依赖版本及许可见 [HighFold3 说明](src/highfold3/README.md)。
+[src/highfold3/](src/highfold3/) 保存当前部署使用的推理源码、输入准备脚本和环境依赖清单，包含环化编码、修饰残基映射及成键修正。源码来源、预测参数、依赖版本及许可见 [HighFold3 说明](src/highfold3/README.md)。
 
 [结果数据包](data/highfold3/results.zip) 通过 **Git LFS** 保存，压缩后约 **612 MiB**，解压后约 **4.23 GiB**，共包含 **535 个原始预测样本**：
 
@@ -45,7 +45,7 @@ unzip data/highfold3/results.zip -d data/highfold3
 
 | 环境 | 用途 | 已记录的主要配置 |
 |---|---|---|
-| [`cle`](environment.yaml) | 结构准备、对接、结果分析与 OpenMM 模拟 | Linux x86_64；Python 3.12.14、RDKit 2026.3.5、OpenMM 8.6.0 |
+| [`cle`](environment.yaml) | 结构准备、对接与 OpenMM 模拟 | Linux x86_64；Python 3.12.14、RDKit 2026.3.5、OpenMM 8.6.0 |
 | [`highfold3`](src/highfold3/README.md#运行环境) | HighFold3 推理 | Ubuntu 20.04.6；Python 3.11.17、JAX/jaxlib 0.4.34、CUDA 12.6、H100 80GB |
 
 HighFold3 的依赖清单见 [conda-explicit.txt](src/highfold3/conda-explicit.txt) 和 [requirements.txt](src/highfold3/requirements.txt)。模型权重、完整搜索数据库及 CCD 缓存需单独准备，部署位置见 [环境说明](src/highfold3/README.md#运行环境)。

@@ -1,6 +1,6 @@
 # HighFold3
 
-用于亚麻环肽及 TAS2R14–G 蛋白复合物预测。目录内保留实际使用的推理源码、输入准备与结果分析脚本、依赖清单及原有许可文件。
+用于亚麻环肽及 TAS2R14–G 蛋白复合物预测。目录内保留实际使用的推理源码、输入准备脚本、依赖清单及原有许可文件；原始预测结果保存在仓库根目录下的 `data/highfold3/results.zip`。
 
 源码来自 `slai:/root/fourish/highfold3` 当前部署，基于
 [AlphaFold3 `7f6edd04a4aeffa65d349d51b1ca81cfd34549af`](https://github.com/google-deepmind/alphafold3/tree/7f6edd04a4aeffa65d349d51b1ca81cfd34549af) 和
@@ -13,7 +13,6 @@
 | [`run_alphafold.py`](run_alphafold.py) | 模型预测入口 |
 | [`src/alphafold3/`](src/alphafold3/) | Python 与 C++ 推理源码 |
 | `build_*inputs.py` | 单体、五态复合物及扩展结构库的输入准备 |
-| `audit_*outputs.py`、`plot_library_results.py` | 预测结果的几何筛选与统计绘图 |
 | [`conda-explicit.txt`](conda-explicit.txt)、[`requirements.txt`](requirements.txt) | Linux x86_64 环境的 Conda 与 Python 依赖 |
 | [`../../data/highfold3/results.zip`](../../data/highfold3/results.zip) | 原始预测结果与相关输入数据 |
 
@@ -65,7 +64,7 @@ CCD 使用该部署的 `components.cif` 和生成的 pickle。权重、完整搜
 当前预测使用 seeds=1,2,3、10 次 recycle、每 seed 5 个 diffusion 样本；单体 bucket=256，复合物 bucket=1024。
 环肽为 A 链，使用 Triton attention；MSA/template 搜索的截止日期为 2026-10-12。
 
-本地输入准备与结果分析使用仓库根目录 [`environment.yaml`](../../environment.yaml) 中的 `cle` 环境：
+本地输入准备使用仓库根目录 [`environment.yaml`](../../environment.yaml) 中的 `cle` 环境：
 Python 3.12.14、RDKit 2026.3.5、NumPy 2.5.2、gemmi 0.7.5。
 
 源码许可及模型／输出使用条款保留在本目录的 `LICENSE` 和三个 `*_TERMS_OF_USE.md` / `WEIGHTS_PROHIBITED_USE_POLICY.md` 文件中。
