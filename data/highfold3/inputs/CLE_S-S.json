@@ -1,0 +1,27 @@
+{
+  "name": "CLE_S-S",
+  "dialect": "alphafold3",
+  "version": 2,
+  "modelSeeds": [
+    1,
+    2,
+    3
+  ],
+  "sequences": [
+    {
+      "protein": {
+        "id": "A",
+        "sequence": "PLFIMLVF",
+        "modifications": [
+          {
+            "ptmPosition": 5,
+            "ptmType": "MHO"
+          }
+        ],
+        "unpairedMsa": "",
+        "pairedMsa": "",
+        "templates": []
+      }
+    }
+  ]
+}

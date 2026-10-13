@@ -20,6 +20,15 @@
 
 [src/highfold3/](src/highfold3/) 保存当前部署使用的推理源码、输入准备脚本和环境依赖清单，包含环化编码、修饰残基映射及成键修正。源码来源、预测参数、依赖版本及许可见 [HighFold3 说明](src/highfold3/README.md)。
 
+在已配置好的 `highfold3` 环境中，使用与膜体系相同的“任务名 + 阶段”入口：
+
+```bash
+conda activate highfold3
+bash src/highfold3/run.sh CLB inference
+```
+
+现成单体任务包括 `CLB`、`CLE_S-R`、`CLE_S-S`、`CLI_S-R`、`CLI_S-S`。输入位于 [data/highfold3/inputs/](data/highfold3/inputs/)，新预测与日志写入 `result/highfold3/<任务>/`；数据准备和完整运行分别使用 `data`、`all` 阶段，详见 [使用说明](src/highfold3/README.md#使用)。
+
 [结果数据包](data/highfold3/results.zip) 通过 **Git LFS** 保存，压缩后约 **612 MiB**，解压后约 **4.23 GiB**，共包含 **535 个原始预测样本**：
 
 | 包内目录 | 预测批次 | 样本数 |

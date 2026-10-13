@@ -1,0 +1,22 @@
+{
+  "name": "CLB",
+  "dialect": "alphafold3",
+  "version": 2,
+  "modelSeeds": [
+    1,
+    2,
+    3
+  ],
+  "sequences": [
+    {
+      "protein": {
+        "id": "A",
+        "sequence": "MLIPPFFVI",
+        "modifications": [],
+        "unpairedMsa": "",
+        "pairedMsa": "",
+        "templates": []
+      }
+    }
+  ]
+}

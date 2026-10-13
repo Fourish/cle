@@ -1,0 +1,27 @@
+{
+  "name": "CLI_S-R",
+  "dialect": "alphafold3",
+  "version": 2,
+  "modelSeeds": [
+    1,
+    2,
+    3
+  ],
+  "sequences": [
+    {
+      "protein": {
+        "id": "A",
+        "sequence": "WVMLMPFF",
+        "modifications": [
+          {
+            "ptmPosition": 5,
+            "ptmType": "SME"
+          }
+        ],
+        "unpairedMsa": "",
+        "pairedMsa": "",
+        "templates": []
+      }
+    }
+  ]
+}

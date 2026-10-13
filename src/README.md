@@ -18,3 +18,5 @@
 筛选细节见 [复合物生成流程](0003-binding-site-selection/WORKFLOW.md)，统一操作方式见 [流程操作界面](production/TUI.md)。
 
 [HighFold3](highfold3/README.md) 提供环肽及 TAS2R14–G 蛋白复合物的推理源码、输入准备脚本和环境说明。[结果数据包](../data/highfold3/results.zip) 包含 535 个原始预测样本、完整置信度、模型排名及相关输入数据。
+
+在已配置的 `highfold3` 环境中，使用 `bash src/highfold3/run.sh CLB inference` 运行单体预测；入口同膜体系脚本，按任务名和阶段调用，输入位于 `data/highfold3/inputs/`，输出位于 `result/highfold3/`。阶段与环境配置见 [HighFold3 使用说明](highfold3/README.md#使用)。

@@ -10,11 +10,43 @@
 
 | 路径 | 内容 |
 |---|---|
+| [`run.sh`](run.sh) | 按任务名和阶段运行的一键入口 |
 | [`run_alphafold.py`](run_alphafold.py) | 模型预测入口 |
 | [`src/alphafold3/`](src/alphafold3/) | Python 与 C++ 推理源码 |
 | `build_*inputs.py` | 单体、五态复合物及扩展结构库的输入准备 |
+| [`../../data/highfold3/inputs/`](../../data/highfold3/inputs/) | 五种基础化学态的单体预测输入 |
 | [`conda-explicit.txt`](conda-explicit.txt)、[`requirements.txt`](requirements.txt) | Linux x86_64 环境的 Conda 与 Python 依赖 |
 | [`../../data/highfold3/results.zip`](../../data/highfold3/results.zip) | 原始预测结果与相关输入数据 |
+
+## 使用
+
+入口与膜体系脚本一致，采用“任务名 + 阶段”的形式。使用已配置依赖、模型权重及 CCD 缓存的 `highfold3` 环境，在仓库根目录执行：
+
+```bash
+conda activate highfold3
+bash src/highfold3/run.sh CLB inference
+```
+
+现成任务为 `CLB`、`CLE_S-R`、`CLE_S-S`、`CLI_S-R`、`CLI_S-S`，输入取自原始结果包的单体批次，包含 seeds=1,2,3 及空 MSA/template。每个任务生成 15 个原始预测样本。
+
+| 阶段 | 行为 | 输入 |
+|---|---|---|
+| `data` | 运行 MSA/template 数据准备 | `data/highfold3/inputs/<任务>.json` |
+| `inference` | 直接运行模型预测 | 优先使用本任务 `data` 阶段生成的 JSON；否则使用已备好 MSA/template 的任务输入 |
+| `all` | 一次完成数据准备与预测 | `data/highfold3/inputs/<任务>.json` |
+
+新增复合物任务时，将准备好的 JSON 放入同一输入目录，并以文件名作为任务名；每个文件包含一个 AlphaFold3 任务，首个链为环肽 A 链。完整运行使用 `bash src/highfold3/run.sh <任务> all`，也可按 `data`、`inference` 顺序执行。
+
+输出位于 `result/highfold3/<任务>/<阶段>/`，标准输出与错误信息写入同层的 `<阶段>.out`。`CURRENT` 和 `HISTORY` 记录阶段、时间和退出状态；同一阶段已有输出或日志时停止，防止覆盖。
+
+脚本默认启用首尾环化、10 次 recycle、每 seed 5 个 diffusion 样本，bucket 为 256/1024，模板截止日期为 2026-10-12。模型权重与搜索数据库默认使用下方记录的服务器路径，可通过 `HIGHFOLD3_MODEL_DIR`、`HIGHFOLD3_DB_DIR` 指定；`HIGHFOLD3_DEVICE`、`HIGHFOLD3_CPUS`、`HIGHFOLD3_BUCKETS`、`HIGHFOLD3_ATTENTION` 分别设置 GPU 编号、搜索线程数、bucket 和 attention 实现，默认值为 `0`、`4`、`256,1024`、`triton`。
+
+首次使用本仓库源码时，在已配置依赖的 `highfold3` 环境中安装源码并生成 CCD 缓存，再执行上面的任务命令：
+
+```bash
+python -m pip install --no-deps ./src/highfold3
+build_data
+```
 
 ## 结果数据
 
@@ -57,7 +89,7 @@ unzip data/highfold3/results.zip -d data/highfold3
 | HMMER | 3.4 |
 | 编译依赖 | GCC/G++ 13.4.0，Eigen 3.4.0，CMake 3.30.3，Ninja 1.11.1 系列 |
 
-现有服务器入口为 `/root/fourish/highfold3/run.sh`。权重位于
+仓库入口为 [`run.sh`](run.sh)。当前服务器的权重位于
 `/root/fourish/alphafold3/model`，搜索数据库位于 `/root/fourish/alphafold3/database`。
 CCD 使用该部署的 `components.cif` 和生成的 pickle。权重、完整搜索数据库与 CCD 缓存需单独准备。
 
