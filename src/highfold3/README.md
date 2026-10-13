@@ -101,14 +101,19 @@ build_data
 输入化学态 SDF 与原子映射分别保存在 `states/` 和 `manifest.json`。
 共用蛋白实体、MSA/template 与源化学结构集中在包内 `inputs/`，没有重复存放每个状态的完整蛋白输入。
 
-结果包使用 Git LFS 保存。安装 Git LFS 后，在仓库根目录拉取并解压：
+结果包使用 Git LFS 保存，以 ZIP/BZip2 无损压缩到约 **403.0 MB（384.3 MiB）**，保留全部原始文件内容。安装 Git LFS 后，在仓库根目录拉取：
 
 ```bash
 git lfs pull --include="data/highfold3/results.zip"
-unzip data/highfold3/results.zip -d data/highfold3
 ```
 
-原始预测位于 `data/highfold3/results/<批次>/predictions/`，按化学态及 seed/sample 分目录保存，坐标保持模型原始输出。
+Notebook 可直接读取结果包。需要解压时，使用 Python 标准库：
+
+```bash
+python -m zipfile -e data/highfold3/results.zip data/highfold3
+```
+
+解压后约占 **4.23 GiB**，原始预测位于 `data/highfold3/results/<批次>/predictions/`，按化学态及 seed/sample 分目录保存，坐标保持模型原始输出。
 
 ## 运行环境
 

@@ -1,6 +1,8 @@
 # cle-main
 
-本项目面向 CLB、CLE、CLI 环肽与 TAS2R14–工程化 G 蛋白复合物的结构研究，收录环肽与受体准备、分子对接、HighFold3 结构预测及膜体系分子动力学的源码、输入数据和现有预测结果。
+本项目面向 CLB、CLE、CLI 环肽与 TAS2R14–工程化 G 蛋白复合物的结构研究，收录环肽与受体准备、分子对接、HighFold3 结构预测及膜体系分子动力学的源码、必要输入和现有预测结果。
+
+仓库按演示与源码用途精简，保留根目录 Notebook、完整源码、结构准备输入、HighFold3 原始结果和环境说明。包含实际结果数据的完整 ZIP 归档约 **414 MB**，低于 **500 MB**；E07–E11 的大型 CHARMM-GUI 膜体系数据需另行准备。
 
 ## 项目内容
 
@@ -29,7 +31,7 @@ bash src/highfold3/run.sh CLB inference
 
 现成单体任务包括 `CLB`、`CLE_S-R`、`CLE_S-S`、`CLI_S-R`、`CLI_S-S`。输入位于 [data/highfold3/inputs/](data/highfold3/inputs/)，新预测与日志写入 `result/highfold3/<任务>/`；数据准备和完整运行分别使用 `data`、`all` 阶段，详见 [使用说明](src/highfold3/README.md#使用)。
 
-[结果数据包](data/highfold3/results.zip) 通过 **Git LFS** 保存，压缩后约 **612 MiB**，解压后约 **4.23 GiB**，共包含 **535 个原始预测样本**：
+[结果数据包](data/highfold3/results.zip) 通过 **Git LFS** 保存，使用 ZIP/BZip2 无损压缩，大小约 **403.0 MB（384.3 MiB）**，解压后约 **4.23 GiB**，共包含 **535 个原始预测样本**：
 
 | 包内目录 | 预测批次 | 样本数 |
 |---|---|---:|
@@ -40,15 +42,20 @@ bash src/highfold3/run.sh CLB inference
 
 各批次保留全部原始 CIF、完整置信度 JSON（含 PAE）和模型直接输出的排名。输入化学态 SDF 与原子映射分别保存在各批次的 `states/` 和 `manifest.json`；共用蛋白输入、MSA/template 与源化学结构集中在包内 `results/inputs/`。
 
-安装 Git LFS 后，在仓库根目录执行：
+安装 Git LFS 后，在仓库根目录拉取结果：
 
 ```bash
 git lfs install --local
 git lfs pull --include="data/highfold3/results.zip"
-unzip data/highfold3/results.zip -d data/highfold3
 ```
 
-解压后的原始预测位于 `data/highfold3/results/<批次>/predictions/`，按化学态及 seed/sample 分目录保存。
+Notebook 直接读取 ZIP，无须解压。若需独立使用全部原始文件，可用 Python 标准库解压：
+
+```bash
+python -m zipfile -e data/highfold3/results.zip data/highfold3
+```
+
+解压后的原始预测位于 `data/highfold3/results/<批次>/predictions/`，按化学态及 seed/sample 分目录保存。此次仅调整压缩方式，全部结构、完整置信度、排名及相关输入文件保持原始内容。
 
 ### Notebook 演示
 
@@ -104,15 +111,17 @@ bash generate_models.sh --resume
 
 ## 膜体系
 
+仓库保留 [膜体系模拟源码](src/md_utils/)，E07–E11 的 CHARMM-GUI 参数化数据需另行准备，并放入 `data/<体系编号>/charmm-gui-result/`。这五个数据目录已加入 Git 忽略规则。
+
 | 体系 | 环肽化学态 |
 |---|---|
-| [E07](data/E07/charmm-gui-result/) | CLB |
-| [E08](data/E08/charmm-gui-result/) | CLE_S-R |
-| [E09](data/E09/charmm-gui-result/) | CLE_S-S |
-| [E10](data/E10/charmm-gui-result/) | CLI_S-R |
-| [E11](data/E11/charmm-gui-result/) | CLI_S-S |
+| E07 | CLB |
+| E08 | CLE_S-R |
+| E09 | CLE_S-S |
+| E10 | CLI_S-R |
+| E11 | CLI_S-S |
 
-各目录保存 CHARMM-GUI 参数化体系。在 `cle` 环境中从仓库根目录执行：
+准备好输入后，在 `cle` 环境中从仓库根目录执行：
 
 ```bash
 bash src/md_utils/run.sh E07 6.1

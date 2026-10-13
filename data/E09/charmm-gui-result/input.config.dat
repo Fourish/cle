@@ -1,1 +1,0 @@
-{"systype":"bilayer","dimensions":["140.098939","140.098939","167.167","90.0","90.0","90.0"],"input":["openmm"],"forcefield":{"type":"c36m","files":["default"],"custom":["ces\/ces.rtf","ces\/ces.prm"]},"hmr":false}

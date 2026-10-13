@@ -1,9 +1,0 @@
-* CLI_S-S: native CHARMM parameters; minimal valid append card
-* PARRDR requires a section header. This one existing bond is repeated unchanged.
-* All atom types, LJ/NBFIX, CMAP and remaining parameters use the loaded native force field.
-*
-
-BONDS
-NH1 H 440.0 0.9970
-
-END

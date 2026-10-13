@@ -15,6 +15,12 @@ __pycache__
 work/
 test/
 /result/
+/data/E07/
+/data/E08/
+/data/E09/
+/data/E10/
+/data/E11/
+/data/highfold3/results/
 .DS_Store
 Thumbs.db
 *.swp

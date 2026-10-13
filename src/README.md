@@ -7,7 +7,7 @@
 | [环肽准备](0001-cyclic-peptide-preparation/README.md) | 父分子二维结构 | 化学态定义、构象采样、优化与几何筛选 | 含显式氢的代表构象 |
 | [受体准备](0002-receptor-gprotein-preparation/README.md) | 受体–G 蛋白实验结构 | 结构选择、缺失区域补建、化学准备与定向 | 对接用受体及配套拓扑 |
 | [结合位点筛选](0003-binding-site-selection/README.md) | 受体与环肽构象 | Vina 对接、复合物几何筛选与聚类 | 重原子复合物候选 |
-| [膜体系模拟](md_utils/README.md) | 参数化膜体系 | 能量最小化、预设平衡与生产模拟 | 轨迹、末态结构及热力学观测信息 |
+| [膜体系模拟](md_utils/README.md) | 另行提供的参数化膜体系 | 能量最小化、预设平衡与生产模拟 | 轨迹、末态结构及热力学观测信息 |
 
 ## 结构要求
 
